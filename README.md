@@ -5,7 +5,7 @@
 - [`src/modules`](src/modules): features, i.e screens
 - [`src/components`](src/components): presentation components
 - [`src/hooks`](src/hooks): contexts and providers for data management
-- [`src/types`](src/types): contains the type definition of out main objects
+- [`src/types`](src/types): contains the type definition of the main objects
 
 ## Using the idmb
 
@@ -15,7 +15,7 @@
 ## Running the project
 
 Assuming you have all the requirements installed, you can setup and run the project by running:
-- `yarn install` to install the dependencies
+- `yarn` to install the dependencies
 - `yarn start` to start the application, in a dedicated terminal
 
 ## Browse the movie list 
