@@ -1,11 +1,11 @@
 import React from "react";
+import { useLikes } from "../../hooks";
+import LikedView from "./LikedView";
 
-function Liked() {
-  return (
-    <div>
-      <h2>Liked</h2>
-    </div>
-  );
-}
+const Liked = () => {
+  const { data, onLikeMovie } = useLikes();
+
+  return <LikedView movies={Object.values(data)} onLikeMovie={onLikeMovie} />;
+};
 
 export default Liked;

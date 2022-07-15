@@ -1,20 +1,28 @@
 import { List } from "antd";
 import React from "react";
 import { MovieCard } from "../../components";
-import { Movie } from "../../hooks";
 import { Pagination } from "antd";
 
 import "./Home.scss";
+import { Movie } from "../../types";
 
 interface Props {
   movies: Movie[];
   currentPage: number;
   totalMovies: number;
   onPageChange: (page: number) => void;
+  onLikeMovie: (index: number) => void;
+  likedMovies: { [key: number]: Movie };
 }
 
-const HomeView: React.FC<Props> = ({ movies, currentPage, totalMovies, onPageChange }) => {
-  console.log(currentPage)
+const HomeView: React.FC<Props> = ({
+  movies,
+  currentPage,
+  totalMovies,
+  onPageChange,
+  onLikeMovie,
+  likedMovies,
+}) => {
   return (
     <>
       <List
@@ -28,9 +36,15 @@ const HomeView: React.FC<Props> = ({ movies, currentPage, totalMovies, onPageCha
           xxl: 3,
         }}
         dataSource={movies}
-        renderItem={(item) => (
-          <List.Item>
-            <MovieCard title={item.title} backdrop_path={item.backdrop_path} />
+        renderItem={(item, index) => (
+          <List.Item key={item.title}>
+            <MovieCard
+              index={index}
+              onLikeMovie={onLikeMovie}
+              title={item.title}
+              backdrop_path={item.backdrop_path}
+              liked={likedMovies[item.id] ? true : false}
+            />
           </List.Item>
         )}
       />

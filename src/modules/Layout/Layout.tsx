@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import "./Layout.css";
 import { Breadcrumb, Layout as AntLayout, Menu, MenuProps } from "antd";
@@ -32,15 +32,15 @@ const items: MenuProps["items"] = [
 ];
 
 function Layout() {
-  const [current, setCurrent] = useState("mail");
+  const [current, setCurrent] = useState("home");
   let navigate = useNavigate();
 
-  const onClick: MenuProps["onClick"] = (e) => {
+  const onClick: MenuProps["onClick"] = useCallback((e: { key: string }) => {
     if (e.key !== "author") {
       setCurrent(e.key);
       navigate(paths[e.key], { replace: true });
     }
-  };
+  }, []);
 
   return (
     <AntLayout>
@@ -56,11 +56,6 @@ function Layout() {
         className="site-layout"
         style={{ padding: "0 50px", marginTop: 64 }}
       >
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
         <div
           className="site-layout-background"
           style={{ padding: 24, minHeight: 380 }}

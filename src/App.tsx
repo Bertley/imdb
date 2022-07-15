@@ -5,17 +5,20 @@ import Home from "./modules/Home";
 import Layout from "./modules/Layout";
 import Liked from "./modules/Liked";
 import { MoviesProvider } from "./hooks/Movies";
+import { LikesProvider } from "./hooks/Likes/Likes";
 
 export default function App() {
   return (
     <MoviesProvider>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="liked" element={<Liked />} />
-          <Route path="*" element={<NoMatch />} />
-        </Route>
-      </Routes>
+      <LikesProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="liked" element={<Liked />} />
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+        </Routes>
+      </LikesProvider>
     </MoviesProvider>
   );
 }
